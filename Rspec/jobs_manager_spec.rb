@@ -25,3 +25,14 @@ describe Jobs_Manager, "#task 2" do
     jobs_manager.task2("bac").should eq("acb")
   end
 end
+
+describe Jobs_Manager, "#task 3" do
+  it "The result should be a sequence that positions f before c, c before b, b before e and a before d containing all six jobs abcdef."
+  	jobs_manager = Jobs_Manager.new
+    jobs_manager.task3("abcdef").should eq("adfcbe")
+  end
+  it "The result should be a sequence that positions f before c, c before b, b before e and a before d containing all six jobs abcdef."
+  	jobs_manager = Jobs_Manager.new
+    jobs_manager.task3("fdecab").should eq("fcbead")
+  end
+end
