@@ -1,4 +1,3 @@
-
 Intro
 ===============
 The purpose of this exercise is to see how you approach a problem, and how you solve it. We’re interested to see how you structure
@@ -63,7 +62,7 @@ c => c
 ```
 The result should be an error stating that jobs can’t depend on themselves.
 
-*Given the following job structure:
+* Given the following job structure:
 ```
 a =>
 b => c
