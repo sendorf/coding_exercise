@@ -18,6 +18,10 @@ end
 describe Jobs_Manager, "#task 2" do
   it "The result should be a sequence that positions c before b, containing all three jobs abc." do
     jobs_manager = Jobs_Manager.new
-    jobs_manager.task2("cab").should eq("acb")
+    jobs_manager.task2("bca").should eq("cba")
+  end
+  it "The result should be a sequence that positions c before b, containing all three jobs abc." do
+    jobs_manager = Jobs_Manager.new
+    jobs_manager.task2("bac").should eq("acb")
   end
 end
