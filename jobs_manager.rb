@@ -28,4 +28,35 @@ class Jobs_Manager
      end
     result						     					
   end
+
+  def task3(jobs_sequence)
+  	a, b, c, d, e, f = nil
+  	result = ""
+    jobs_sequence.chars.each do |job| 	# Runs the string parameter character by character 
+        if(job == 'c'  && b)				# Checks if when the job 'b' appears job 'c' has appeared before
+        	result.concat(job+b)
+        	c = ''
+        elsif(job == 'f'  && c)				# Checks if when the job 'b' appears job 'c' has appeared before
+        	result.concat(job+c)
+        	f = ''
+        elsif(job == 'a'  && d)				# Checks if when the job 'b' appears job 'c' has appeared before
+        	result.concat(job+d)
+        	a = ''
+        elsif(job == 'b'  && e)				# Checks if when the job 'b' appears job 'c' has appeared before
+        	result.concat(job+e)
+        	b = ''
+        elsif (job == 'b' && b.nil?)        # Marks 'c' job as "read"
+            b = job
+        elsif (job == 'c' && c.nil?)        # Marks 'c' job as "read"
+            c = job
+        elsif (job == 'd' && d.nil?)        # Marks 'c' job as "read"
+            d = job
+        elsif (job == 'e' && d.nil?)        # Marks 'c' job as "read"
+            e = job
+        else
+        	result.concat(job)  		# Concats the jobs in the order they have been given as parameter
+        end								# If they are not 'b' or 'c' jobs
+     end
+    result						     					
+  end
 end
