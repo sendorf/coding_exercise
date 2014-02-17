@@ -2,6 +2,7 @@
 class Jobs_Manager
 
   def task0(jobs_sequence)
-    "" #Always returns an empty String, no matters what you give it as a parameter
+    jobs_sequence # Returns the String given as parameter, as long as the string given as parameter is empty 
+                  # the result is the expected.
   end
 end
