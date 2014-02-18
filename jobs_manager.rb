@@ -30,33 +30,44 @@ class Jobs_Manager
   end
 
   def task3(jobs_sequence)
-  	a, b, c, d, e, f = nil
+  	a, b, c, d, e, f = false
   	result = ""
-    jobs_sequence.chars.each do |job| 	# Runs the string parameter character by character 
-        if(job == 'c'  && b)				# Checks if when the job 'b' appears job 'c' has appeared before
-        	result.concat(job+b)
-        	c = ''
-        elsif(job == 'f'  && c)				# Checks if when the job 'b' appears job 'c' has appeared before
-        	result.concat(job+c)
-        	f = ''
-        elsif(job == 'a'  && d)				# Checks if when the job 'b' appears job 'c' has appeared before
-        	result.concat(job+d)
-        	a = ''
-        elsif(job == 'b'  && e)				# Checks if when the job 'b' appears job 'c' has appeared before
-        	result.concat(job+e)
-        	b = ''
-        elsif (job == 'b' && b.nil?)        # Marks 'c' job as "read"
-            b = job
-        elsif (job == 'c' && c.nil?)        # Marks 'c' job as "read"
-            c = job
-        elsif (job == 'd' && d.nil?)        # Marks 'c' job as "read"
-            d = job
-        elsif (job == 'e' && d.nil?)        # Marks 'c' job as "read"
-            e = job
-        else
-        	result.concat(job)  		# Concats the jobs in the order they have been given as parameter
-        end								# If they are not 'b' or 'c' jobs
-     end
-    result						     					
+    jobs_sequence.chars.each do |job| 	# Runs the string parameter character by character
+    	# Checks the dependences and keeps them 
+        if(job == 'a' && !a)
+        	result.concat("ad")
+        	a = true
+        	d = true
+        elsif(job == 'b' && !b)
+        	result.concat("fcbe")
+        	f = true
+        	c = true
+        	b = true
+        	e = true
+        elsif(job == 'c' && !c)
+        	result.concat("fcbe")
+        	f = true
+        	c = true
+        	b = true
+        	e = true
+        elsif(job == 'd' && !d)
+        	result.concat("ad")
+        	a = true
+        	d = true
+        elsif(job == 'e' && !e)
+        	result.concat("fcbe")
+        	f = true
+        	c = true
+        	b = true
+        	e = true
+        elsif(job == 'f' && !f)
+        	result.concat("fcbe")
+        	f = true
+        	c = true
+        	b = true
+        	e = true
+        end
+    end
+    result
   end
 end
