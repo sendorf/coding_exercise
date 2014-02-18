@@ -36,3 +36,10 @@ describe Jobs_Manager, "#task 3" do
     jobs_manager.task3("fdecab").should eq("fcbead")
   end
 end
+
+describe Jobs_Manager, "#task 4" do
+  it "The result should be a sequence consisting of a single job a." do
+    jobs_manager = Jobs_Manager.new
+    jobs_manager.task4("").should eq("Jobs can’t depend on themselves")
+  end
+end
