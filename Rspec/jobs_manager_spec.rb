@@ -43,3 +43,10 @@ describe Jobs_Manager, "#task 4" do
     jobs_manager.task4("").should eq("Jobs cannot depend on themselves")
   end
 end
+
+describe Jobs_Manager, "#task 5" do
+  it "The result should be an error stating that jobs cannot have circular dependencies." do
+    jobs_manager = Jobs_Manager.new
+    jobs_manager.task5("").should eq("Jobs cannot have circular dependencies")
+  end
+end
