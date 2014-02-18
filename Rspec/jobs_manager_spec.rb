@@ -38,8 +38,8 @@ describe Jobs_Manager, "#task 3" do
 end
 
 describe Jobs_Manager, "#task 4" do
-  it "The result should be a sequence consisting of a single job a." do
+  it "The result should be an error stating that jobs cannot depend on themselves." do
     jobs_manager = Jobs_Manager.new
-    jobs_manager.task4("").should eq("Jobs can’t depend on themselves")
+    jobs_manager.task4("").should eq("Jobs cannot depend on themselves")
   end
 end

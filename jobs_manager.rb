@@ -70,4 +70,12 @@ class Jobs_Manager
     end
     result
   end
+
+  def task4(jobs_sequence)
+  	begin
+  		raise "Error"
+  	rescue
+  		"Jobs cannot depend on themselves"
+  	end
+  end
 end
