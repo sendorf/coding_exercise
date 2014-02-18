@@ -73,9 +73,17 @@ class Jobs_Manager
 
   def task4(jobs_sequence)
   	begin
-  		raise "Error"
+  		raise "Error"							# Raises an Error because jobs cannot depend on themselves
   	rescue
-  		"Jobs cannot depend on themselves"
+  		"Jobs cannot depend on themselves"		# Method takes the value of the error message
+  	end
+  end
+
+  def task5(jobs_sequence)
+  	begin
+  		raise "Error"								# Raises an Error because jobs cannot have circular dependencies
+  	rescue
+  		"Jobs cannot have circular dependencies"	# Method takes the value of the error messag
   	end
   end
 end
