@@ -3,7 +3,19 @@ class Jobs_Manager
 
   def manage_jobs(job_structure = {})
     result = ""
-    job_structure.each_key {|key| result.concat(key.to_s) }
+    used_keys = []
+    job_structure.each_key do |key| 
+      if job_structure[:key].eql? ""
+        result.concat(key.to_s)
+      else
+        if result.index(key.to_s.chars.first).nil? #Checks if the next dependent key is already processed by any dependence
+          result.concat(job_structure[key].to_s)
+          result.concat(key.to_s)
+        else
+          result.sub(/#{key}/) {|s| job_structure[key].to_s + s.to_s } # Replaces an already processed dependent key with the 
+        end                                                            # proper dependence.
+      end
+    end
     result
   end
 
