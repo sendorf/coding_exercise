@@ -5,15 +5,27 @@ class Jobs_Manager
     result = ""
     used_keys = []
     job_structure.each_key do |key| 
-      if job_structure[:key].eql? ""
-        result.concat(key.to_s)
-      else
-        if result.index(key.to_s.chars.first).nil? #Checks if the next dependent key is already processed by any dependence
-          result.concat(job_structure[key].to_s)
-          result.concat(key.to_s)
+      key_s = key.to_s
+      key_c = key.to_s.chars.first
+      dependent_s = job_structure[key].to_s
+      dependent_c = job_structure[key].to_s.chars.first
+      if dependent_c.nil?
+        if result.rindex(key_c).nil?
+          result.concat(key_s)
+        end
+      else 
+        if !result.rindex(dependent_c).nil?                                       # Checks if the dependent job is already processed
+          index = result.rindex(dependent_c)
+          result.delete!(dependent_s)
+          result = result.insert(index, "#{job_structure[key].to_s + key.to_s}")  #  If so replaces the repeated char with the proper sequence    
+        elsif result.rindex(key_c).nil?                                           # Checks if the next dependent key is 
+          result.concat(dependent_s)                                              # already processed by any dependence
+          result.concat(key_s)
         else
-          result.sub(/#{key}/) {|s| job_structure[key].to_s + s.to_s } # Replaces an already processed dependent key with the 
-        end                                                            # proper dependence.
+          index = result.rindex(key_c)
+          result.delete!(key_s)
+          result = result.insert(index, "#{dependent_s + key_s}")     # Replaces an already processed dependent key with the 
+        end                                                           # proper dependence.
       end
     end
     result
