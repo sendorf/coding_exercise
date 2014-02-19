@@ -66,8 +66,15 @@ describe Jobs_Manager, "#manage_jobs task 1" do
 end
 
 describe Jobs_Manager, "#manage_jobs task 2" do
-  it "The result should be a sequence consisting of a single job a." do
+  it "The result should be a sequence containing all three jobs abc in no significant order." do
     jobs_manager = Jobs_Manager.new
     jobs_manager.manage_jobs({:a => "", :b => "", :c => ""}).should eq("abc")
+  end
+end
+
+describe Jobs_Manager, "#manage_jobs task 3" do
+  it "The result should be a sequence that positions c before b, containing all three jobs abc." do
+    jobs_manager = Jobs_Manager.new
+    jobs_manager.manage_jobs({:a => "", :b => 'c' , :c => ""}).should eq("acb")
   end
 end
