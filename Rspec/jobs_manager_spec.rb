@@ -78,3 +78,10 @@ describe Jobs_Manager, "#manage_jobs task 3" do
     jobs_manager.manage_jobs({:a => "", :b => 'c' , :c => ""}).should eq("acb")
   end
 end
+
+describe Jobs_Manager, "#manage_jobs task 4" do
+  it "The result should be a sequence that positions f before c, c before b, b before e and a before d containing all six jobs abcdef." do
+    jobs_manager = Jobs_Manager.new
+    jobs_manager.manage_jobs({:a => "", :b => 'c' , :c => 'f', :d => 'a', :e => 'b', :f => ""}).should eq("adfcbe")
+  end
+end
