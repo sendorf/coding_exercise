@@ -64,3 +64,10 @@ describe Jobs_Manager, "#manage_jobs task 1" do
     jobs_manager.manage_jobs({:a => ""}).should eq("a")
   end
 end
+
+describe Jobs_Manager, "#manage_jobs task 2" do
+  it "The result should be a sequence consisting of a single job a." do
+    jobs_manager = Jobs_Manager.new
+    jobs_manager.manage_jobs({:a => "", :b => "", :c => ""}).should eq("abc")
+  end
+end
