@@ -1,8 +1,10 @@
 # jobs_manager.rb
 class Jobs_Manager
 
-  def manage_jobs(job_structure)
-    ""
+  def manage_jobs(job_structure = {})
+    result = ""
+    job_structure.each_key {|key| result.concat(key.to_s) }
+    result
   end
 
   def task0(jobs_sequence)

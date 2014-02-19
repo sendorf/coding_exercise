@@ -52,8 +52,15 @@ describe Jobs_Manager, "#task 5" do
 end
 
 describe Jobs_Manager, "#manage_jobs task 0" do
-  it "The result should be an error stating that jobs cannot have circular dependencies." do
+  it "The result should be an empty sequence." do
     jobs_manager = Jobs_Manager.new
     jobs_manager.manage_jobs({}).should eq("")
+  end
+end
+
+describe Jobs_Manager, "#manage_jobs task 1" do
+  it "The result should be a sequence consisting of a single job a." do
+    jobs_manager = Jobs_Manager.new
+    jobs_manager.manage_jobs({:a => ""}).should eq("a")
   end
 end
