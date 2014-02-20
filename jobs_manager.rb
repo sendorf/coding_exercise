@@ -11,7 +11,7 @@ class Jobs_Manager
         dependent_s = job_structure[key].to_s
         dependent_c = job_structure[key].to_s.chars.first
         if dependent_c == key_c
-          raise "ERROR: Itself dependent"     # Raises an error if the job depends on itself
+          raise "ERROR: Jobs cannot depend on themselves."  # Raises an error if the job depends on itself
         elsif dependent_c.nil?
           if result.rindex(key_c).nil?
             result.concat(key_s)
@@ -32,8 +32,8 @@ class Jobs_Manager
         end
       end
       result
-    rescue
-      "ERROR: Jobs cannot depend on themselves."  # Rescues the error with the selected message.
+    rescue Exception => e
+      e.message                                           # Rescues the error with the selected message.
     end
   end
 
