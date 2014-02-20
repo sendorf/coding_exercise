@@ -89,6 +89,6 @@ end
 describe Jobs_Manager, "#manage_jobs task 5" do
   it "The result should be an error stating that jobs cannot depend on themselves." do
     jobs_manager = Jobs_Manager.new
-    jobs_manager.manage_jobs({:a => "", :b => "" , :c => 'c'}).should eq("ERROR: Jobs cannot depend on themselves")
+    jobs_manager.manage_jobs({:a => "", :b => "" , :c => 'c'}).should eq("ERROR: Jobs cannot depend on themselves.")
   end
 end

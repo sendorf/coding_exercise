@@ -4,33 +4,37 @@ class Jobs_Manager
   def manage_jobs(job_structure = {})
     result = ""
     used_keys = []
-    job_structure.each_key do |key| 
-      key_s = key.to_s
-      key_c = key.to_s.chars.first
-      dependent_s = job_structure[key].to_s
-      dependent_c = job_structure[key].to_s.chars.first
-      if dependent_c == key_c
-        "ERROR: Jobs cannot depend on themselves."
-      elsif dependent_c.nil?
-        if result.rindex(key_c).nil?
-          result.concat(key_s)
+    begin
+      job_structure.each_key do |key| 
+        key_s = key.to_s
+        key_c = key.to_s.chars.first
+        dependent_s = job_structure[key].to_s
+        dependent_c = job_structure[key].to_s.chars.first
+        if dependent_c == key_c
+          raise "ERROR: Itself dependent"     # Raises an error if the job depends on itself
+        elsif dependent_c.nil?
+          if result.rindex(key_c).nil?
+            result.concat(key_s)
+          end
+        else 
+          if !result.rindex(dependent_c).nil?                                       # Checks if the dependent job is already processed
+            index = result.rindex(dependent_c)
+            result.delete!(dependent_s)
+            result = result.insert(index, "#{job_structure[key].to_s + key.to_s}")  #  If so replaces the repeated char with the proper sequence    
+          elsif result.rindex(key_c).nil?                                           # Checks if the next dependent key is 
+            result.concat(dependent_s)                                              # already processed by any dependence
+            result.concat(key_s)
+          else
+            index = result.rindex(key_c)
+            result.delete!(key_s)
+            result = result.insert(index, "#{dependent_s + key_s}")     # Replaces an already processed dependent key with the 
+          end                                                           # proper dependence.
         end
-      else 
-        if !result.rindex(dependent_c).nil?                                       # Checks if the dependent job is already processed
-          index = result.rindex(dependent_c)
-          result.delete!(dependent_s)
-          result = result.insert(index, "#{job_structure[key].to_s + key.to_s}")  #  If so replaces the repeated char with the proper sequence    
-        elsif result.rindex(key_c).nil?                                           # Checks if the next dependent key is 
-          result.concat(dependent_s)                                              # already processed by any dependence
-          result.concat(key_s)
-        else
-          index = result.rindex(key_c)
-          result.delete!(key_s)
-          result = result.insert(index, "#{dependent_s + key_s}")     # Replaces an already processed dependent key with the 
-        end                                                           # proper dependence.
       end
+      result
+    rescue
+      "ERROR: Jobs cannot depend on themselves."  # Rescues the error with the selected message.
     end
-    result
   end
 
   def task0(jobs_sequence)
