@@ -31,6 +31,11 @@ class Jobs_Manager
           end                                                           # proper dependence.
         end
       end
+      result.chars.each do |char|
+        if result.count(char) != 1
+          raise "ERROR: Jobs cannot have circular dependencies."        # There should not be repeated character in the final
+        end                                                             # result, if there is, there is a circular dependence
+      end
       result
     rescue Exception => e
       e.message                                           # Rescues the error with the selected message.
