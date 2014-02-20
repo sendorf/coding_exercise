@@ -9,7 +9,9 @@ class Jobs_Manager
       key_c = key.to_s.chars.first
       dependent_s = job_structure[key].to_s
       dependent_c = job_structure[key].to_s.chars.first
-      if dependent_c.nil?
+      if dependent_c == key_c
+        "ERROR: Jobs cannot depend on themselves."
+      elsif dependent_c.nil?
         if result.rindex(key_c).nil?
           result.concat(key_s)
         end
